@@ -58,4 +58,8 @@ Both files are treated as best-effort resources: if missing or malformed, the pr
 - FlatZinc files can be compiled out of MiniZinc and data files, using the [MiniZinc Compiler](https://github.com/MiniZinc/libminizinc).
 - Objective reconstruction is best-effort and relies on patterns like `:: defines_var(...)` annotations when present.
 - Constraint arity and variable involvement are heuristic when arrays or annotations obscure exact argument structure.
+- This project was developed as an accessory tool for a master thesis research.
 
+## Author
+
+[Vittorio Rossetto](https://github.com/VittorioRossetto)
