@@ -10,7 +10,7 @@ _FZN_DESCRIPTIONS_CACHE: Optional[Dict[str, str]] = None
 _FZN_CATEGORIZED_CACHE: Optional[Tuple[Dict[str, List[str]], Dict[str, str]]] = None
 
 def _load_fzn_constraint_descriptions() -> Dict[str, str]:
-    """Load a mapping constraint_name -> description from fzn_descriptions.json.
+    """Load a mapping constraint_name -> description from ./data/fzn_descriptions.json.
 
     Preferred format (simple JSON object):
         {"fzn_table_int": "A table constraint ...", ...}
@@ -24,7 +24,7 @@ def _load_fzn_constraint_descriptions() -> Dict[str, str]:
     if _FZN_DESCRIPTIONS_CACHE is not None:
         return _FZN_DESCRIPTIONS_CACHE
 
-    path = Path(__file__).with_name("fzn_descriptions.json")
+    path = Path(__file__).with_name("./data/fzn_descriptions.json")
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
@@ -74,7 +74,7 @@ def _load_fzn_constraint_categories() -> Tuple[Dict[str, List[str]], Dict[str, s
     if _FZN_CATEGORIZED_CACHE is not None:
         return _FZN_CATEGORIZED_CACHE
 
-    path = Path(__file__).with_name("fzn_descriptions_categorized.json")
+    path = Path(__file__).with_name("./data/fzn_descriptions_categorized.json")
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
@@ -316,7 +316,7 @@ def describe_constraints(model, categorize: bool = False):
         return "\n".join(lines)
 
     # Categorized view: group constraint types under the categories from
-    # fzn_descriptions_categorized.json. Avoid double-counting types that appear
+    # ./data/fzn_descriptions_categorized.json. Avoid double-counting types that appear
     # in multiple categories by assigning a single primary category.
     def _primary_category(ctype: str) -> str:
         key = _resolve_key_in_mapping(ctype, categorized_map) if categorized_map else None

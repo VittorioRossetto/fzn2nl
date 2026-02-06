@@ -35,7 +35,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--categorize-constraints",
         action="store_true",
-        help="Group constraints by category from fzn_descriptions_categorized.json",
+        help="Group constraints by category from ./data/fzn_descriptions_categorized.json",
     )
     args = parser.parse_args()
 

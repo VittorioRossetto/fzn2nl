@@ -19,7 +19,7 @@ This repo parses a FlatZinc file and prints a structured description of:
 python3 main.py path/to/model.fzn
 ```
 
-To group constraints by category (from `fzn_descriptions_categorized.json`):
+To group constraints by category (from `./data/fzn_descriptions_categorized.json`):
 
 ```bash
 python3 main.py path/to/model.fzn --categorize-constraints
@@ -37,8 +37,8 @@ The CLI prints three sections:
 
 The constraint descriptions in this project are extracted through JSON lookup:
 
-- `fzn_descriptions.json`: mapping of constraint name -> description.
-- `fzn_descriptions_categorized.json`: categorized descriptions used by `--categorize-constraints`.
+- `./data/fzn_descriptions.json`: mapping of constraint name -> description.
+- `./data/fzn_descriptions_categorized.json`: categorized descriptions used by `--categorize-constraints`.
 
 The descriptions and categories are extracted from [MiniZinc Documentation](https://docs.minizinc.dev/en/stable/index.html)
 Both files are treated as best-effort resources: if missing or malformed, the program still runs and just omits those descriptions.
