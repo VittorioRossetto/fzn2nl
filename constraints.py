@@ -9,6 +9,11 @@ from nlMappings import CONSTRAINT_TEXT
 _FZN_DESCRIPTIONS_CACHE: Optional[Dict[str, str]] = None
 _FZN_CATEGORIZED_CACHE: Optional[Tuple[Dict[str, List[str]], Dict[str, str]]] = None
 
+
+def _data_file_path(filename: str) -> Path:
+    """Return an absolute path to a file in this package's ./data directory."""
+    return Path(__file__).resolve().parent / "data" / filename
+
 def _load_fzn_constraint_descriptions() -> Dict[str, str]:
     """Load a mapping constraint_name -> description from ./data/fzn_descriptions.json.
 
@@ -24,7 +29,7 @@ def _load_fzn_constraint_descriptions() -> Dict[str, str]:
     if _FZN_DESCRIPTIONS_CACHE is not None:
         return _FZN_DESCRIPTIONS_CACHE
 
-    path = Path(__file__).with_name("./data/fzn_descriptions.json")
+    path = _data_file_path("fzn_descriptions.json")
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
@@ -74,7 +79,7 @@ def _load_fzn_constraint_categories() -> Tuple[Dict[str, List[str]], Dict[str, s
     if _FZN_CATEGORIZED_CACHE is not None:
         return _FZN_CATEGORIZED_CACHE
 
-    path = Path(__file__).with_name("./data/fzn_descriptions_categorized.json")
+    path = _data_file_path("fzn_descriptions_categorized.json")
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
